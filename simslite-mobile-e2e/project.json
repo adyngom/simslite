@@ -1,0 +1,33 @@
+{
+  "name": "simslite-mobile-e2e",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "simslite-mobile-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "simslite-mobile-e2e/cypress.config.ts",
+        "devServerTarget": "simslite-mobile:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "simslite-mobile:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "simslite-mobile:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["simslite-mobile-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["simslite-mobile"]
+}

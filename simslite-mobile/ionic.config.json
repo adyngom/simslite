@@ -1,0 +1,7 @@
+{
+  "name": "simslite-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
