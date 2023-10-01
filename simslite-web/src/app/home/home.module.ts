@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
+import { AccordionPreviewComponent } from './accordion';
+import { CardPreviewComponent } from './card'
 
 import { HomePageRoutingModule } from './home-routing.module';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, HomePageRoutingModule],
+  imports: [CommonModule, FormsModule, IonicModule, HomePageRoutingModule, AccordionPreviewComponent, CardPreviewComponent],
   declarations: [HomePage],
 })
 export class HomePageModule {}

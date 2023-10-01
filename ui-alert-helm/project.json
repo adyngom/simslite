@@ -1,0 +1,57 @@
+{
+  "name": "ui-alert-helm",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ui-alert-helm/src",
+  "prefix": "hlm",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}"
+      ],
+      "options": {
+        "project": "ui-alert-helm/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "ui-alert-helm/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "ui-alert-helm/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "ui-alert-helm/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "ui-alert-helm/**/*.ts",
+          "ui-alert-helm/**/*.html",
+          "ui-alert-helm/package.json"
+        ]
+      }
+    }
+  }
+}
