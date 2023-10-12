@@ -1,0 +1,10 @@
+<div
+  class="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+  <div class="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
+    <ng-content [select]="leftGrid"></ng-content>
+    left
+  </div>
+  <div class="lg:p-8">
+    <ng-content [select]="rightGrid"></ng-content>
+  </div>
+</div>

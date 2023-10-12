@@ -1,0 +1,52 @@
+{
+  "name": "ui-animations",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ui-animations/src",
+  "prefix": "simslite",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "ui-animations/ng-package.json",
+        "tailwindConfig": "ui-animations/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "ui-animations/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "ui-animations/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "ui-animations/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "ui-animations/**/*.ts",
+          "ui-animations/**/*.html",
+          "ui-animations/package.json"
+        ]
+      }
+    }
+  }
+}

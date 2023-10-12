@@ -1,0 +1,82 @@
+<div
+  class="container relative hidden h-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+  <div class="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
+    <div class="absolute inset-0 bg-zinc-900"></div>
+    <div>
+      <h1 class="relative scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">SIMS<sup
+          class="absolute text-sm -top-1">lite</sup></h1>
+      <p class="text-xl text-muted-foreground mt-4">All in one expenses and income tracker</p>
+    </div>
+    <div class="relative z-20 mt-auto">
+      <blockquote class="space-y-2">
+        <p class="text-lg">
+          "The best way to predict your financial future is to track, monitor and control your
+          expenses and income from
+          any screen on any device."
+        </p>
+      </blockquote>
+      <footer class="text-sm"> - <cite class="not-italic">Ady Ngom - CTO SIMS INC.</cite></footer>
+    </div>
+  </div>
+  <div class="lg:p-8">
+    <div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+      <div class="flex flex-col space-y-2">
+        <h1 class="text-2xl font-semibold tracking-tight">Sign In</h1>
+        <p class="text-sm text-muted-foreground">With email, qr code or social account</p>
+      </div>
+      <div class="grid gap-6">
+        <form>
+          <div class="grid gap-2">
+            <div class="grid gap-1">
+              <label class="text-xs font-medium leading-none peer-disabled:cursor-not-allowed peer-
+                disabled:opacity-70 mb-1" for="email">Email</label>
+              <input class="flex h-9 w-full mb-1 rounded-md border border-input bg-transparent px-3 py-1
+                text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm
+                file:font-medium placeholder:text-muted-foreground focus-visible:outline-none
+                focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed
+                disabled:opacity-50" id="email" placeholder="name@example.com" autocapitalize="none"
+                autocomplete="email" autocorrect="off" type="email">
+              <label class="text-xs font-medium leading-none peer-disabled:cursor-not-allowed peer-
+                disabled:opacity-70 mb-1" for="password">Password</label>
+              <input class="flex h-9 w-full mb-1 rounded-md border border-input bg-transparent px-3 py-1 text-sm
+                shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm
+                file:font-medium placeholder:text-muted-foreground focus-visible:outline-none
+                focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed
+                disabled:opacity-50" id="password" placeholder="Password" autocomplete="current-password"
+                type="password">
+            </div>
+            <div class="flex justify-between text-[10px]">
+              <div>
+                <label for="rememberMe">Remember me</label>
+              </div>
+              <div class="text-zinc-900">
+                <a href="#">Forgot password</a>
+              </div>
+            </div>
+            <button class="inline-flex items-center justify-center rounded-md text-sm font-medium
+              transition-colors focus-visible:outline-none focus-visible:ring-1
+              focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary
+              text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2" (click)="isAuthed()">
+              Sign In with Email
+            </button>
+          </div>
+        </form>
+        <div class="relative">
+          <div class="absolute inset-0 flex items-center"><span class="w-full border-t"></span></div>
+          <div class="relative flex justify-center text-xs uppercase"><span
+              class="bg-background px-2 text-muted-foreground">Or</span></div>
+        </div><button
+          class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+          type="button"><hlm-icon name="radixLinkedinLogo" class="mr-2 h-4 w-4" />
+          Sign in with LinkedIn</button>
+        <button
+          class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+          type="button"><hlm-icon name="radixGithubLogo" class="mr-2 h-4 w-4" />
+          Sign in with Github</button>
+      </div>
+      <p class="px-8 text-center text-sm text-muted-foreground">By clicking continue, you agree to our <a
+          class="underline underline-offset-4 hover:text-primary" href="/terms">Terms of Service</a> and <a
+          class="underline underline-offset-4 hover:text-primary" href="/privacy">Privacy Policy</a>.</p>
+    </div>
+  </div>
+</div>

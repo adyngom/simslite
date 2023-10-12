@@ -1,0 +1,103 @@
+<div class="flex m-8">
+  <input hlmInput placeholder="Filter by name" [ngModel]="_nameFilter()"
+    (ngModelChange)="_rawFilterInput.set($event)" />
+
+  <button hlmBtn variant="outline" align="end" [brnMenuTriggerFor]="menu">
+    Columns
+    <hlm-icon name="radixChevronDown" class="ml-2" size="sm" />
+  </button>
+  <ng-template #menu>
+    <div hlm brnMenu class="w-40">
+      <button *ngFor="let columnName of _brnColumnManager.allColumns" hlm brnMenuItemCheckbox
+        [disabled]="_brnColumnManager.isColumnDisabled(columnName)"
+        [checked]="_brnColumnManager.isColumnVisible(columnName)"
+        (triggered)="_brnColumnManager.toggleVisibility(columnName)">
+        <hlm-menu-item-check />
+        <span>{{ columnName | titlecase }}</span>
+      </button>
+    </div>
+  </ng-template>
+</div>
+
+<brn-table hlm stickyHeader class="mx-8 text-sm block border border-border z-10 bg-[#fff]"
+  [dataSource]="_transactionsData()" [displayedColumns]="_brnColumnManager.displayedColumns()" [trackBy]="_trackBy">
+  <brn-column-def name="reference">
+    <hlm-th class="pl-3 flex-1 justify-start text-left md:justify-center" *brnHeaderDef>Reference</hlm-th>
+    <hlm-td class="p-3 flex-1 justify-start text-left" *brnCellDef="let element">
+      <div class="sm:flex text-sm md:hidden">
+        <small>{{ element.date | date: 'dd/MM/yyyy' }}</small>
+        <p>{{ element.reference | titlecase }}</p>
+        <small><i>{{ element.status | titlecase}}</i></small>
+      </div>
+      <div class="hidden md:flex">
+        <p>{{ element.reference | titlecase }}</p>
+      </div>
+    </hlm-td>
+  </brn-column-def>
+  <brn-column-def name="date">
+    <hlm-th class="hidden flex-1  justify-center md:flex" *brnHeaderDef>Date</hlm-th>
+    <hlm-td class="p-3 hidden flex-1  justify-center md:flex tabular-nums" *brnCellDef="let element">
+      {{ element.date | date: 'dd/MM/yyyy' }}
+    </hlm-td>
+  </brn-column-def>
+  <brn-column-def name="journal">
+    <hlm-th class="flex-1 justify-end text-right pr-3 md:justify-center md:pr-0 " *brnHeaderDef>Journal</hlm-th>
+    <hlm-td class="p-3 flex-1 justify-end text-right md:justify-center tabular-nums" *brnCellDef="let element">
+      <div class="sm:flex text-sm md:hidden">
+        <b>{{ element.journal | titlecase }}</b>
+        <p><hlm-icon name="radixStopwatch" class="mt-1 mr-1" size="sm" /> {{ element.startingBalance | currency: 'USD':
+          'symbol'}}</p>
+        <p><hlm-icon name="radixLapTimer" class="mt-1 mr-1" size="sm" /> {{ element.endingBalance | currency: 'USD':
+          'symbol'}}</p>
+      </div>
+      <div class="hidden md:flex">
+        <p>{{ element.journal | titlecase }}</p>
+      </div>
+    </hlm-td>
+  </brn-column-def>
+  <brn-column-def name="startingBalance">
+    <hlm-th class="hidden flex-1  justify-center md:flex" *brnHeaderDef>Starting Balance</hlm-th>
+    <hlm-td class="p-3 hidden flex-1  justify-center md:flex tabular-nums" *brnCellDef="let element">
+      {{ element.startingBalance | currency: 'USD': 'symbol'}}
+    </hlm-td>
+  </brn-column-def>
+  <brn-column-def name="endingBalance">
+    <hlm-th class="hidden flex-1  justify-center md:flex" *brnHeaderDef>Ending Balance</hlm-th>
+    <hlm-td class="p-3 hidden flex-1  justify-center md:flex tabular-nums" *brnCellDef="let element">
+      <div class="sm:flex md:hidden">
+        <b>Status</b>: {{ element.status }}
+      </div>
+      <div>{{ element.endingBalance | currency: 'USD': 'symbol'}}</div>
+    </hlm-td>
+  </brn-column-def>
+  <brn-column-def name="status">
+    <hlm-th class="hidden flex-1  justify-center md:flex" *brnHeaderDef>status</hlm-th>
+    <hlm-td class="p-3 hidden flex-1  justify-center md:flex tabular-nums" *brnCellDef="let element">
+      <div>
+        {{ element.status }}
+      </div>
+    </hlm-td>
+  </brn-column-def>
+</brn-table>
+<div class="mx-8 flex justify-between items-center"
+  *brnPaginator="let ctx; totalElements: _totalElements(); pageSize: _pageSize(); onStateChange: _onStateChange">
+  <span class="text-sm tabular-nums">Showing entries {{ ctx.state().startIndex + 1 }} - {{ ctx.state().endIndex + 1 }}
+    of
+    {{ _totalElements() }}</span>
+  <div class="flex">
+    <select [ngModel]="_pageSize()" (ngModelChange)="_pageSize.set($event)" hlmInput size="sm"
+      class="inline-flex mr-1 pr-8">
+      <option [value]="size" *ngFor="let size of _availablePageSizes">{{ size === 10000 ? 'All' : size }}</option>
+    </select>
+
+    <div class="flex space-x-1">
+      <button size="sm" variant="outline" hlmBtn [disabled]="!ctx.decrementable()" (click)="ctx.decrement()">
+        Previous
+      </button>
+      <button size="sm" variant="outline" hlmBtn [disabled]="!ctx.incrementable()" (click)="ctx.increment()">
+        Next
+      </button>
+    </div>
+  </div>
+</div>
+<button size="sm" variant="outline" hlmBtn (click)="_loadNewTransactions()">Mix it up</button>
